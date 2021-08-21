@@ -1,6 +1,4 @@
-﻿using AntFarm.Abstractions.Population;
-
-namespace AntFarm.Abstractions.World
+﻿namespace AntFarm.Abstractions.World
 {
     public interface IWorld
     {
@@ -8,8 +6,8 @@ namespace AntFarm.Abstractions.World
 
         public ITerrain Terrain { get; }
 
-        public void LoadWorld(string path);
+        public void LoadWorld(string saveName);
 
-        public void SaveWorld(string path);
+        public void SaveWorld(string saveName);
     }
 }

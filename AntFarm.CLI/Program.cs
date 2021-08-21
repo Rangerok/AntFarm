@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AntFarm.Abstractions;
 using AntFarm.AntWorld.Population;
 using AntFarm.AntWorld.World;
+using AntFarm.AntWorld.World.Save;
 using AntFarm.Bot;
 using AntFarm.Bot.SimpleTasks;
 
@@ -13,7 +14,7 @@ namespace AntFarm.CLI
     {
         public static async Task Main(string[] args)
         {
-            var world = new World("testMap.json");
+            var world = new World("testMap", new WorldSaver());
             var population = new Population();
 
             var bot = new BaseBot(new Position(1, 1), false, new WalkTask(new Position(9, 5)), 2, 10);

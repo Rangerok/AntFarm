@@ -9,18 +9,18 @@ namespace AntFarm.Bot
 {
     public class BaseBot : IBot
     {
-        public Position Position { get; set; }
-        
-        public bool IsDead { get; private set; }
-        
-        public IBotTask CurrentTask { get; private set; }
-
         private readonly int _viewDistance;
         private readonly int _memorySize;
 
         private readonly Queue<IBotMemory> _memories;
         private readonly Queue<IBotTask> _botTasks;
         
+        public Position Position { get; set; }
+
+        public bool IsDead { get; private set; }
+
+        public IBotTask CurrentTask { get; private set; }
+
         public BaseBot(Position position,
             bool isDead,
             IBotTask currentTask,
