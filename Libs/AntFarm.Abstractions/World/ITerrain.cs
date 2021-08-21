@@ -7,5 +7,7 @@
         public int Width { get; }
 
         public Tile[,] Tiles { get; }
+
+        public void Generate(int seed);
     }
 }

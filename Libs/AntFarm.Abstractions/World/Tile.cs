@@ -6,7 +6,8 @@
 
         public bool IsWalkable()
         {
-            return Type != TileTypes.Water;
+            return Type != TileTypes.Water
+                   && Type != TileTypes.Rock;
         }
     }
 }

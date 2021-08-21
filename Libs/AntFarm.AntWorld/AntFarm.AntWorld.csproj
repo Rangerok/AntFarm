@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="AStarLite" Version="1.0.0" />
+    <PackageReference Include="RandomAccessPerlinNoise" Version="1.0.1" />
   </ItemGroup>
 
   <ItemGroup>

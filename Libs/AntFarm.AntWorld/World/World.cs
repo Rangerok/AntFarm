@@ -20,12 +20,13 @@ namespace AntFarm.AntWorld.World
 
         public World(int width,
             int height,
+            int seed,
             IWorldSaver worldSaver)
         {
             _worldSaver = worldSaver;
             Terrain = new Terrain(width, height);
 
-            //TODO generate world
+            Terrain.Generate(seed);
 
             PathFinder = new PathFinder(Terrain);
         }
