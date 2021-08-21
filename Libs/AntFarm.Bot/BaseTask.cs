@@ -9,6 +9,8 @@ namespace AntFarm.Bot
     {
         protected readonly Queue<IBotTask> _subTasksQueue;
 
+        private bool _isInitialized = false;
+
         protected BaseTask()
         {
             _subTasksQueue = new Queue<IBotTask>(15);
@@ -16,14 +18,23 @@ namespace AntFarm.Bot
 
         public bool Execute(IWorld world, IPopulation population, IBot bot)
         {
-            if (_subTasksQueue.TryDequeue(out var subTask))
+            if (!_isInitialized)
+                InitializeTask(world, population, bot);
+
+            if (_subTasksQueue.TryPeek(out var subTask))
             {
-                subTask.Execute(world, population, bot);
+                if (subTask.Execute(world, population, bot))
+                    _subTasksQueue.Dequeue();
 
                 return false;
             }
 
             return ExecuteInternal(world, population, bot);
+        }
+
+        protected virtual void InitializeTask(IWorld world, IPopulation population, IBot bot)
+        {
+            //Do nothing by default
         }
 
         protected abstract bool ExecuteInternal(IWorld world, IPopulation population, IBot bot);
