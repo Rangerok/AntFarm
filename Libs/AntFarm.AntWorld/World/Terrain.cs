@@ -30,12 +30,12 @@ namespace AntFarm.AntWorld.World
             var noiseGenerator = new NoiseGenerator(
                 seed,
                 0.5,
-                6,
+                9,
                 new[] { 4, 4 },
                 false,
                 Interpolations.Cosine);
 
-            var noise = new double[Width, Height];
+            var noise = new double[Height, Width];
             noiseGenerator.Fill(noise, new[] { 0L, 0L });
 
             for (var y = 0; y < Height; y++)
@@ -44,10 +44,13 @@ namespace AntFarm.AntWorld.World
                 {
                     var tileType = noise[y, x] switch
                     {
-                        var n when n > 0.75 => TileTypes.Rock,
-                        var n when n > 0.47 && n <= 0.75 => TileTypes.Dirt,
-                        var n when n > 0.39 && n <= 0.47 => TileTypes.Sand,
-                        var n when n <= 0.39 => TileTypes.Water,
+                        var n when n > 0.8 => TileTypes.Rock,
+                        //var n when n > 0.6 && n <= 0.8 => TileTypes.Dirt,
+                        //var n when n > 0.55 && n <= 0.6 => TileTypes.Grass,
+                        //var n when n > 0.41 && n <= 0.55 => TileTypes.Dirt,
+                        var n when n > 0.41 && n <= 0.8 => TileTypes.Dirt,
+                        var n when n > 0.35 && n <= 0.41 => TileTypes.Sand,
+                        var n when n <= 0.35 => TileTypes.Water,
                     };
 
                     Tiles[y, x] = new Tile
@@ -56,6 +59,8 @@ namespace AntFarm.AntWorld.World
                     };
                 }
             }
+
+            //TODO grass
         }
     }
 }
